@@ -1,3 +1,2 @@
-2022/06/04-22:05:28.072 1594 Reusing MANIFEST C:\whaticket\whaticket-community\backend\.wwebjs_auth\session-bd_3\Default\Session Storage/MANIFEST-000001
-2022/06/04-22:05:28.082 1594 Recovering log #3
-2022/06/04-22:05:28.084 1594 Reusing old log C:\whaticket\whaticket-community\backend\.wwebjs_auth\session-bd_3\Default\Session Storage/000003.log 
+2022/06/05-15:30:52.954 dbc Creating DB C:\whaticket\whaticket\backend\.wwebjs_auth\session-bd_3\Default\Session Storage since it was missing.
+2022/06/05-15:30:53.035 dbc Reusing MANIFEST C:\whaticket\whaticket\backend\.wwebjs_auth\session-bd_3\Default\Session Storage/MANIFEST-000001
