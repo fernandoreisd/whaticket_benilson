@@ -449,6 +449,43 @@ const handleMessage = async (
       }
     } */
 
+    if(msg.fromMe === false && ticket.userId === 4 && ticket.agendamentoId !== null && ticket.whatsappId === 3){
+      let msgKonsit = "*Informe opções 1,2 ou 3"
+      switch(msg.body){
+          case "1":
+            let msh
+              console.log("envia para konsit confirmando agenda")
+              msgKonsit = "envia para konsit confirmando agenda"
+              await ticket.update({
+                status: "close",
+                userId: ticket.userId
+            });
+          break;
+          
+          case "2":
+              console.log("envia para konsit cancela agenda")
+              msgKonsit = "envia para konsit cancela agenda"
+              await ticket.update({
+                status: "close",
+                userId: ticket.userId
+              });
+          break;
+
+          case "3":
+              console.log("Atendimento Humano")
+              msgKonsit = "Atendimento Humano"
+              await ticket.update({
+                status: "pending",
+                userId: null
+              });
+          break;
+      }
+
+      const sentMessage = await wbot.sendMessage(`${contact.number}@c.us`, msgKonsit);
+      await verifyMessage(sentMessage, ticket, contact);       
+
+   }  
+
     if(msg.type==="call_log" && callSetting==="disabled"){
       const sentMessage = await wbot.sendMessage(`${contact.number}@c.us`, "*Mensagem Automática:*\nAs chamadas de voz e vídeo estão desabilitas para esse WhatsApp, favor enviar uma mensagem de texto. Obrigado");
       await verifyMessage(sentMessage, ticket, contact);

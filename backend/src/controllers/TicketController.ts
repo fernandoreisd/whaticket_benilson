@@ -8,6 +8,8 @@ import ShowTicketService from "../services/TicketServices/ShowTicketService";
 import UpdateTicketService from "../services/TicketServices/UpdateTicketService";
 import SendWhatsAppMessage from "../services/WbotServices/SendWhatsAppMessage";
 import ShowWhatsAppService from "../services/WhatsappService/ShowWhatsAppService";
+import ShowQueueService from "../services/QueueService/ShowQueueService";
+import ShowUserService from "../services/UserServices/ShowUserService";
 import formatBody from "../helpers/Mustache";
 
 type IndexQuery = {
@@ -25,6 +27,7 @@ interface TicketData {
   status: string;
   queueId: number;
   userId: number;
+  transf: boolean;
 }
 
 export const index = async (req: Request, res: Response): Promise<Response> => {
@@ -93,6 +96,19 @@ export const update = async (
     ticketData,
     ticketId
   });
+
+  if(ticketData.transf) {
+    //const {name} = await ShowQueueService(ticketData.queueId);
+
+    if(ticketData.userId) {
+      const nome = await ShowUserService(ticketData.userId);
+      const msgtxt = "Chat transferido. O(a) consultor(a) *"+nome.name+"* irá atendê-lo(a). Aguarde um momento por gentileza!";
+      await SendWhatsAppMessage({body: msgtxt, ticket});
+    }/* else {
+      const msgtxt = "* Mensagem Automática:* Chat tranferido para o departamento *"+name+"*\n  Aguarde um momento, iremos atende-lo(a)!";
+      await SendWhatsAppMessage({body: msgtxt, ticket});
+    } */    
+  }
 
   if (ticket.status === "closed") {
     const whatsapp = await ShowWhatsAppService(ticket.whatsappId);

@@ -1,0 +1,45 @@
+2023/07/19-20:27:13.759 1a456f Reusing MANIFEST /www/wwwroot/apross/backend/.wwebjs_auth/session-bd_2/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/07/19-20:27:13.759 1a456f Recovering log #702
+2023/07/19-20:27:13.898 1a456f Reusing old log /www/wwwroot/apross/backend/.wwebjs_auth/session-bd_2/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000702.log 
+2023/07/19-20:53:26.735 1a4d67 Level-0 table #723: started
+2023/07/19-20:53:26.780 1a4d67 Level-0 table #723: 1309025 bytes OK
+2023/07/19-20:53:26.788 1a4d67 Delete type=0 #702
+2023/07/19-20:53:26.793 1a4d67 Compacting 1@0 + 0@1 files
+2023/07/19-20:53:26.832 1a4d67 Generated table #724@0: 23831 keys, 542379 bytes
+2023/07/19-20:53:26.835 1a4d67 Generated table #725@0: 751 keys, 24424 bytes
+2023/07/19-20:53:26.835 1a4d67 Compacted 1@0 + 0@1 files => 566803 bytes
+2023/07/19-20:53:26.836 1a4d67 compacted to: files[ 0 2 22 0 0 0 0 ]
+2023/07/19-20:53:26.837 1a4d67 Delete type=2 #723
+2023/07/19-20:53:26.934 1a4d67 Compacting 1@1 + 10@2 files
+2023/07/19-20:53:27.083 1a4d67 Generated table #726@1: 55805 keys, 2263299 bytes
+2023/07/19-20:53:27.193 1a4d67 Generated table #727@1: 12063 keys, 2181628 bytes
+2023/07/19-20:53:27.270 1a4d67 Generated table #728@1: 3428 keys, 2158107 bytes
+2023/07/19-20:53:27.331 1a4d67 Generated table #729@1: 3271 keys, 2165053 bytes
+2023/07/19-20:53:27.380 1a4d67 Generated table #730@1: 3174 keys, 2168116 bytes
+2023/07/19-20:53:27.431 1a4d67 Generated table #731@1: 2842 keys, 2161184 bytes
+2023/07/19-20:53:27.488 1a4d67 Generated table #732@1: 2506 keys, 2152234 bytes
+2023/07/19-20:53:27.533 1a4d67 Generated table #733@1: 8786 keys, 2170906 bytes
+2023/07/19-20:53:27.645 1a4d67 Generated table #734@1: 30512 keys, 2256140 bytes
+2023/07/19-20:53:27.777 1a4d67 Generated table #735@1: 25107 keys, 2276846 bytes
+2023/07/19-20:53:27.781 1a4d67 Generated table #736@1: 489 keys, 43007 bytes
+2023/07/19-20:53:27.781 1a4d67 Compacted 1@1 + 10@2 files => 21996520 bytes
+2023/07/19-20:53:27.795 1a4d67 compacted to: files[ 0 1 23 0 0 0 0 ]
+2023/07/19-20:53:27.795 1a4d67 Delete type=2 #715
+2023/07/19-20:53:27.795 1a4d67 Delete type=2 #713
+2023/07/19-20:53:27.795 1a4d67 Delete type=2 #712
+2023/07/19-20:53:27.795 1a4d67 Delete type=2 #714
+2023/07/19-20:53:27.795 1a4d67 Delete type=2 #709
+2023/07/19-20:53:27.795 1a4d67 Delete type=2 #710
+2023/07/19-20:53:27.795 1a4d67 Delete type=2 #711
+2023/07/19-20:53:27.795 1a4d67 Delete type=2 #706
+2023/07/19-20:53:27.795 1a4d67 Delete type=2 #707
+2023/07/19-20:53:27.795 1a4d67 Delete type=2 #724
+2023/07/19-20:53:27.795 1a4d67 Delete type=2 #708
+2023/07/19-20:53:28.712 1a5228 Compacting 1@1 + 5@2 files
+2023/07/19-20:53:28.835 1a5228 Generated table #737@1: 19326 keys, 2203824 bytes
+2023/07/19-20:53:28.915 1a5228 Generated table #738@1: 44418 keys, 2178049 bytes
+2023/07/19-20:53:29.080 1a5228 Generated table #739@1: 103252 keys, 2253079 bytes
+2023/07/19-20:53:29.296 1a5228 Generated table #740@1: 101402 keys, 2252615 bytes
+2023/07/19-20:53:29.419 1a5228 Generated table #741@1: 54737 keys, 1220759 bytes
+2023/07/19-20:53:29.419 1a5228 Compacted 1@1 + 5@2 files => 10108326 bytes
+2023/07/19-20:53:29.422 1a5228 compacted to: files[ 0 0 23 0 0 0 0 ]

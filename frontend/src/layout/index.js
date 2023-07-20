@@ -219,7 +219,7 @@ const LoggedInLayout = ({ children }) => {
           >
             Fasterisk-Whatsapp
           </Typography>
-          {user.id && <NotificationsPopOver />}
+            {user.id && <NotificationsPopOver />}
 
           <div>
             <IconButton

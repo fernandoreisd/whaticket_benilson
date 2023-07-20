@@ -1,2 +1,20 @@
-2022/06/05-15:30:58.361 dbc Creating DB C:\whaticket\whaticket\backend\.wwebjs_auth\session-bd_3\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb since it was missing.
-2022/06/05-15:30:58.375 dbc Reusing MANIFEST C:\whaticket\whaticket\backend\.wwebjs_auth\session-bd_3\Default\IndexedDB\https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/07/20-05:41:00.346 1b46e7 Reusing MANIFEST /www/wwwroot/apross/backend/.wwebjs_auth/session-bd_3/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2023/07/20-05:41:00.346 1b46e7 Recovering log #72
+2023/07/20-05:41:00.383 1b46e7 Reusing old log /www/wwwroot/apross/backend/.wwebjs_auth/session-bd_3/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000072.log 
+2023/07/20-05:41:00.384 1b46e7 Delete type=2 #73
+2023/07/20-05:41:00.384 1b46e7 Delete type=2 #69
+2023/07/20-05:41:00.384 1b46e7 Delete type=2 #70
+2023/07/20-05:41:25.070 1b4743 Level-0 table #79: started
+2023/07/20-05:41:25.095 1b4743 Level-0 table #79: 2971875 bytes OK
+2023/07/20-05:41:25.101 1b4743 Delete type=0 #72
+2023/07/20-05:41:25.420 1b46e6 Compacting 1@1 + 4@2 files
+2023/07/20-05:41:25.516 1b46e6 Generated table #80@1: 57524 keys, 2245121 bytes
+2023/07/20-05:41:25.567 1b46e6 Generated table #81@1: 38650 keys, 2188401 bytes
+2023/07/20-05:41:25.595 1b46e6 Generated table #82@1: 22223 keys, 382270 bytes
+2023/07/20-05:41:25.595 1b46e6 Compacted 1@1 + 4@2 files => 4815792 bytes
+2023/07/20-05:41:25.596 1b46e6 compacted to: files[ 0 0 3 0 0 0 0 ]
+2023/07/20-05:41:25.596 1b46e6 Delete type=2 #74
+2023/07/20-05:41:25.596 1b46e6 Delete type=2 #71
+2023/07/20-05:41:25.596 1b46e6 Delete type=2 #79
+2023/07/20-05:41:25.596 1b46e6 Delete type=2 #76
+2023/07/20-05:41:25.596 1b46e6 Delete type=2 #75

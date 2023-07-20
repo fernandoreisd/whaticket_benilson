@@ -13,9 +13,9 @@ import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
 import Divider from "@material-ui/core/Divider";
 import Badge from "@material-ui/core/Badge";
-
+import IconButton from '@material-ui/core/IconButton';
 import { i18n } from "../../translate/i18n";
-
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import api from "../../services/api";
 import ButtonWithSpinner from "../ButtonWithSpinner";
 import MarkdownWrapper from "../MarkdownWrapper";
@@ -81,6 +81,10 @@ const useStyles = makeStyles(theme => ({
 		marginLeft: "auto",
 	},
 
+	bottomButton: {
+		top: "12px",
+	},
+
 	badgeStyle: {
 		color: "white",
 		backgroundColor: green[500],
@@ -103,8 +107,8 @@ const useStyles = makeStyles(theme => ({
 	userTag: {
 		position: "absolute",
 		marginRight: 5,
-		right: 5,
-		bottom: 5,
+		right: 20,
+		bottom: 30,
 		background: "#2576D2",
 		color: "#ffffff",
 		border: "1px solid #CCC",
@@ -146,6 +150,22 @@ const TicketListItem = ({ ticket }) => {
 		}
 		history.push(`/tickets/${id}`);
 	};
+
+	const handleViewTicket = async id => {
+		setLoading(true);
+		try {
+			await api.put(`/tickets/${id}`, {
+				status: "pending",
+			});
+		} catch (err) {
+			setLoading(false);
+			toastError(err);
+		}
+		if (isMounted.current) {
+			setLoading(false);
+		}
+		history.push(`/tickets/${id}`);
+	};	
 
 	const handleSelectTicket = id => {
 		history.push(`/tickets/${id}`);
@@ -190,13 +210,6 @@ const TicketListItem = ({ ticket }) => {
 							>
 								{ticket.contact.name}
 							</Typography>
-							{ticket.status === "closed" && (
-								<Badge
-									className={classes.closedBadge}
-									badgeContent={"closed"}
-									color="primary"
-								/>
-							)}
 							{ticket.lastMessage && (
 								<Typography
 									className={classes.lastMessageTime}
@@ -242,7 +255,8 @@ const TicketListItem = ({ ticket }) => {
 						</span>
 					}
 				/>
-				{ticket.status === "pending" && (
+
+				{ticket.status === "pending" && (					
 					<ButtonWithSpinner
 						color="primary"
 						variant="contained"
@@ -253,7 +267,16 @@ const TicketListItem = ({ ticket }) => {
 					>
 						{i18n.t("ticketsList.buttons.accept")}
 					</ButtonWithSpinner>
-				)}
+				)}	
+
+ 			 	{ticket.status === "pending" && (					
+					<IconButton
+					className={classes.bottomButton}
+					color="primary"
+					onClick={e => handleViewTicket(ticket.id)} >
+					<VisibilityIcon />
+				  	</IconButton>								
+				)}	
 			</ListItem>
 			<Divider variant="inset" component="li" />
 		</React.Fragment>

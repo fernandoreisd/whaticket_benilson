@@ -1,2 +1,6 @@
-2022/06/05-15:30:48.355 dbc Creating DB C:\whaticket\whaticket\backend\.wwebjs_auth\session-bd_3\Default\Local Storage\leveldb since it was missing.
-2022/06/05-15:30:48.422 dbc Reusing MANIFEST C:\whaticket\whaticket\backend\.wwebjs_auth\session-bd_3\Default\Local Storage\leveldb/MANIFEST-000001
+2023/07/20-05:40:59.662 1b46e1 Reusing MANIFEST /www/wwwroot/apross/backend/.wwebjs_auth/session-bd_3/Default/Local Storage/leveldb/MANIFEST-000001
+2023/07/20-05:40:59.662 1b46e1 Recovering log #3
+2023/07/20-05:40:59.663 1b46e1 Reusing old log /www/wwwroot/apross/backend/.wwebjs_auth/session-bd_3/Default/Local Storage/leveldb/000003.log 
+2023/07/20-08:41:27.887 1b8c1a Level-0 table #5: started
+2023/07/20-08:41:27.890 1b8c1a Level-0 table #5: 13354 bytes OK
+2023/07/20-08:41:27.893 1b8c1a Delete type=0 #3

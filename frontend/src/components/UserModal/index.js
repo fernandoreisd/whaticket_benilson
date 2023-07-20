@@ -225,6 +225,7 @@ const UserModal = ({ open, onClose, userId }) => {
 														required
 													>
 														<MenuItem value="admin">Admin</MenuItem>
+														<MenuItem value="superv">Super</MenuItem>
 														<MenuItem value="user">User</MenuItem>
 													</Field>
 												</>

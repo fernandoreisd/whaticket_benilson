@@ -74,6 +74,24 @@ const FindOrCreateTicketService = async (
       unreadMessages,
       whatsappId
     });
+    
+    let ticket_all = await Ticket.findAll({
+          where: {
+            status: {
+              [Op.or]: ["open", "pending"]
+            },
+            id: { [Op.not]: ticket.id },
+            contactId: groupContact ? groupContact.id : contact.id
+          }
+        }).then((result) => {
+          if(result){
+            result.forEach(function (r) {
+              r.update({ status: 'close' });
+              r.save();
+            });
+          }
+       })    
+    
   }
 
   ticket = await ShowTicketService(ticket.id);

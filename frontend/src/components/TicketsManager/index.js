@@ -26,6 +26,8 @@ import { AuthContext } from "../../context/Auth/AuthContext";
 import { Can } from "../Can";
 import TicketsQueueSelect from "../TicketsQueueSelect";
 import { Button } from "@material-ui/core";
+import TicketsAgentSelect from "../TicketsAgentSelect";
+import api from "../../services/api";
 
 const useStyles = makeStyles((theme) => ({
   ticketsWrapper: {
@@ -118,15 +120,28 @@ const TicketsManager = () => {
   const userQueueIds = user.queues.map((q) => q.id);
   const [selectedQueueIds, setSelectedQueueIds] = useState(userQueueIds || []);
 
+  const [agents, setAgents] = useState([]);
+  const [selectedAgentId, setSelectedAgentId] = useState(0);
+
+  async function loadAgents() {
+    const { data } = await api.get("/users");
+
+    setAgents(data.users);
+  }
+
   useEffect(() => {
-    if (user.profile.toUpperCase() === "ADMIN") {
+    if (
+      user.profile.toUpperCase() === "ADMIN" ||
+      user.profile.toUpperCase() === "SUPERV"
+    ) {
       setShowAllTickets(true);
     }
-  }, [])
+
+    loadAgents();
+  }, []);
 
   const handleSearch = (e) => {
     const searchedTerm = e.target.value.toLowerCase();
-
 
     setSearchParam(searchedTerm);
     if (searchedTerm === "") {
@@ -134,7 +149,6 @@ const TicketsManager = () => {
     } else if (tab !== "search") {
       setTab("search");
     }
-
   };
 
   const handleChangeTab = (e, newValue) => {
@@ -150,7 +164,7 @@ const TicketsManager = () => {
       return { width: 0, height: 0 };
     }
   };
-  
+
   return (
     <Paper elevation={0} variant="outlined" className={classes.ticketsWrapper}>
       <NewTicketModal
@@ -159,79 +173,83 @@ const TicketsManager = () => {
       />
       <Paper elevation={0} square className={classes.searchContainer}>
         <SearchIcon className={classes.searchIcon} />
-            <input
-            type="text"
-            placeholder={i18n.t("tickets.search.placeholder")}
-            className={classes.searchInput}
-            value={searchParam}
-            onChange={handleSearch}
+        <input
+          type="text"
+          placeholder={i18n.t("tickets.search.placeholder")}
+          className={classes.searchInput}
+          value={searchParam}
+          onChange={handleSearch}
         />
-    </Paper>
-    <Paper elevation={0} square className={classes.tabsHeader}>
+      </Paper>
+      <Paper elevation={0} square className={classes.tabsHeader}>
         <Tabs
-            value={tab}
-            onChange={handleChangeTab}
-            variant="fullWidth"
-            indicatorColor="primary"
-            textColor="primary"
-            aria-label="icon label tabs example"
+          value={tab}
+          onChange={handleChangeTab}
+          variant="fullWidth"
+          indicatorColor="primary"
+          textColor="primary"
+          aria-label="icon label tabs example"
         >
-        <Tab
+          <Tab
             value={"open"}
             icon={<MoveToInboxIcon />}
             label={i18n.t("tickets.tabs.open.title")}
             classes={{ root: classes.tab }}
-        />
-        <Tab
+          />
+          <Tab
             value={"pending"}
             icon={<HourglassEmptyRoundedIcon />}
             label={
-                <Badge
+              <Badge
                 className={classes.badge}
                 badgeContent={pendingCount}
                 color="secondary"
-            >
+              >
                 {i18n.t("ticketsList.pendingHeader")}
-            </Badge>
+              </Badge>
             }
             classes={{ root: classes.tab }}
-        />
-        <Tab
+          />
+          <Tab
             value={"closed"}
             icon={<AllInboxRoundedIcon />}
             label={i18n.t("tickets.tabs.closed.title")}
             classes={{ root: classes.tab }}
-        />
+          />
         </Tabs>
-    </Paper>
-    <Paper square elevation={0} className={classes.ticketOptionsBox}>
+      </Paper>
+      <Paper square elevation={0} className={classes.ticketOptionsBox}>
         <Button
-            variant="outlined"
-            color="primary"
-            onClick={() => setNewTicketModalOpen(true)}
+          variant="outlined"
+          color="primary"
+          onClick={() => setNewTicketModalOpen(true)}
         >
-        {i18n.t("ticketsManager.buttons.newTicket")}
+          {i18n.t("ticketsManager.buttons.newTicket")}
         </Button>
         <Can
-            role={user.profile}
-            perform="tickets-manager:showall"
-            yes={() => (
+          role={user.profile}
+          perform="tickets-manager:showalladmin"
+          yes={() => (
             <FormControlLabel
-                label={i18n.t("tickets.buttons.showAll")}
-                labelPlacement="start"
-                control={
+              label={i18n.t("tickets.buttons.showAll")}
+              labelPlacement="start"
+              control={
                 <Switch
-                    size="small"
-                    checked={showAllTickets}
-                    onChange={() =>
-                    setShowAllTickets((prevState) => !prevState)
-                    }
-                    name="showAllTickets"
-                    color="primary"
+                  size="small"
+                  checked={showAllTickets}
+                  onChange={() => setShowAllTickets((prevState) => !prevState)}
+                  name="showAllTickets"
+                  color="primary"
                 />
-                }
+              }
             />
-            )}
+          )}
+        />
+        <TicketsAgentSelect
+          style={{ marginLeft: 6 }}
+          selectedAgentId={selectedAgentId}
+          agents={agents}
+          onChange={(values) => setSelectedAgentId(values)}
         />
         <TicketsQueueSelect
           style={{ marginLeft: 6 }}
@@ -239,12 +257,12 @@ const TicketsManager = () => {
           userQueues={user?.queues}
           onChange={(values) => setSelectedQueueIds(values)}
         />
-    </Paper>
-        <TabPanel value={tab} name="open" className={classes.ticketsWrapper}>
-          
+      </Paper>
+      <TabPanel value={tab} name="open" className={classes.ticketsWrapper}>
         <Paper className={classes.ticketsWrapper}>
           <TicketsList
             status="open"
+            selectedAgentId={selectedAgentId}
             showAll={showAllTickets}
             selectedQueueIds={selectedQueueIds}
             updateCount={(val) => setOpenCount(val)}
@@ -266,13 +284,12 @@ const TicketsManager = () => {
         />
       </TabPanel>
 
-      
-      
       <TabPanel value={tab} name="closed" className={classes.ticketsWrapper}>
         <TicketsList
           status="closed"
           showAll={true}
           selectedQueueIds={selectedQueueIds}
+          selectedAgentId={selectedAgentId}
         />
       </TabPanel>
       <TabPanel value={tab} name="search" className={classes.ticketsWrapper}>
@@ -280,6 +297,7 @@ const TicketsManager = () => {
           searchParam={searchParam}
           showAll={true}
           selectedQueueIds={selectedQueueIds}
+          selectedAgentId={selectedAgentId}
         />
       </TabPanel>
     </Paper>

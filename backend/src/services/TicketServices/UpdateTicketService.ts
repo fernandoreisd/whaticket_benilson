@@ -10,6 +10,7 @@ interface TicketData {
   status?: string;
   userId?: number;
   queueId?: number;
+  agendamentoId?: number;
 }
 
 interface Request {
@@ -27,7 +28,7 @@ const UpdateTicketService = async ({
   ticketData,
   ticketId
 }: Request): Promise<Response> => {
-  const { status, userId, queueId } = ticketData;
+  const { status, userId, queueId, agendamentoId } = ticketData;
 
   const ticket = await ShowTicketService(ticketId);
   await SetTicketMessagesAsRead(ticket);
@@ -42,7 +43,8 @@ const UpdateTicketService = async ({
   await ticket.update({
     status,
     queueId,
-    userId
+    userId,
+    agendamentoId
   });
 
 
